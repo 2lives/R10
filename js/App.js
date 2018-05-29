@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import { ApolloProvider } from 'react-apollo';
-import { About } from './screens/about';
+import About from './screens/about';
 
 import ApolloClient from 'apollo-boost';
 
@@ -12,30 +12,11 @@ const client = new ApolloClient({
 export default class App extends Component {
     render() {
         return (
-            <ApolloProvider>
-                <View style={styles.container}>
+            <ApolloProvider client={client}>
+                <View>
                     <About />
                 </View>
             </ApolloProvider>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF'
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5
-    }
-});
