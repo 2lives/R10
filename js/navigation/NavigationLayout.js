@@ -48,9 +48,22 @@ const scheduleStack = createStackNavigator(
     }
 );
 
-export const SpeakerScreen = createStackNavigator({
-    Speaker: Speaker
-});
+export const SpeakerScreen = createStackNavigator(
+    {
+        Speaker: Speaker
+    },
+    {
+        navigationOptions: ({ navigation }) => ({
+            headerStyle: {
+                backgroundColor: 'black'
+            },
+            headerTitleStyle: {
+                color: 'white'
+            },
+            title: 'About the Speaker'
+        })
+    }
+);
 
 export default createBottomTabNavigator(
     {
