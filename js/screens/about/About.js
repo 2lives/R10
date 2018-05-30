@@ -1,7 +1,7 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import React, { Component } from 'react';
-import { Text, ScrollView, View } from 'react-native';
+import { Text, ScrollView, View, Button } from 'react-native';
 import styles from './styles';
 
 const AboutQuery = gql`

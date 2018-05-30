@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import { ApolloProvider } from 'react-apollo';
-import About from './screens/about';
+import RootStackNavigator from './navigation/RootStackNavigator';
 
 import ApolloClient from 'apollo-boost';
 
@@ -13,9 +13,7 @@ export default class App extends Component {
     render() {
         return (
             <ApolloProvider client={client}>
-                <View>
-                    <About />
-                </View>
+                <RootStackNavigator />
             </ApolloProvider>
         );
     }

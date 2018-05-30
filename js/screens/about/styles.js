@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import assetColors from '../../config/styles';
+import { assetColors } from '../../config/styles';
 const window = Dimensions.get('window');
 
 const styles = StyleSheet.create({
