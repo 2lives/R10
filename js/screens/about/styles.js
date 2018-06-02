@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { assetColors } from '../../config/styles';
+import { assetColors, assetTypography } from '../../config/styles';
 const window = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
 
     text: {
         textAlign: 'left',
-        fontSize: 18
+        fontSize: 18,
+        fontFamily: assetTypography.mainFont
     },
     headers: {
         fontSize: 27,
@@ -31,7 +32,8 @@ const styles = StyleSheet.create({
         color: assetColors.purple,
         fontWeight: 'bold',
         fontSize: 18,
-        marginBottom: 20
+        marginBottom: 20,
+        fontFamily: assetTypography.mainFont
     }
 });
 export default styles;

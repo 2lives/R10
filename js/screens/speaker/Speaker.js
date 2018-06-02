@@ -6,7 +6,7 @@ export class Speaker extends Component {
         return (
             <View>
                 <TouchableOpacity onPress={() => this.props.navigation.pop()}>
-                    <Text>Go Back</Text>
+                    <Text>Temporary Back</Text>
                 </TouchableOpacity>
                 <Text>Speaker</Text>
             </View>
