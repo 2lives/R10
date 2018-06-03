@@ -5,20 +5,8 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import styles from './styles';
-
-const formatSessionData = sessions => {
-    return sessions
-        .reduce((acc, curr) => {
-            const timeExists = acc.find(
-                section => section.title === curr.startTime
-            );
-            timeExists
-                ? timeExists.data.push(curr)
-                : acc.push({ title: curr.startTime, data: [curr] });
-            return acc;
-        }, [])
-        .sort((a, b) => a.title - b.title);
-};
+import { formatSessionData } from '../../lib/Helpers';
+import SectionListComponent from '../../components/SectionListComponent';
 
 const ScheduleQuery = gql`
     {
@@ -41,11 +29,23 @@ const ScheduleQuery = gql`
 
 export class ScheduleContainer extends Component {
     render() {
-        console.log(this.props);
         return (
-            <ScrollView contentContainerStyle={styles.container}>
-                <Schedule nav={this.props.navigation} />
-            </ScrollView>
+            <Query query={ScheduleQuery}>
+                {({ loading, error, data }) => {
+                    if (loading) return <Text>Loading</Text>;
+                    if (error) return <Text>Error</Text>;
+                    const arrangedData = formatSessionData(data.allSessions);
+                    console.log(data);
+                    return (
+                        <ScrollView contentContainerStyle={styles.container}>
+                            <SectionListComponent
+                                nav={this.props.navigation}
+                                arrangedData={arrangedData}
+                            />
+                        </ScrollView>
+                    );
+                }}
+            </Query>
         );
     }
 }

@@ -51,7 +51,8 @@ const scheduleStack = createStackNavigator(
 
 const favesStack = createStackNavigator(
     {
-        Faves: Faves
+        Faves: Faves,
+        Session: Session
     },
     {
         navigationOptions: ({ navigation }) => ({
