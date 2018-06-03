@@ -1,47 +1,12 @@
 import React from 'react';
-import {
-    Text,
-    View,
-    SectionList,
-    TouchableHighlight,
-    Image
-} from 'react-native';
+import { Text, View, SectionList, TouchableHighlight } from 'react-native';
 import styles from './styles';
-import gql from 'graphql-tag';
 import { connect } from 'react-redux';
-import { formatSessionData } from '../lib/Helpers';
 import moment from 'moment';
-import { Query } from 'react-apollo';
-
-// const ScheduleQuery = gql`
-//     {
-//         allSessions {
-//             startTime
-//             title
-//             id
-//             location
-//             description
-//             speaker {
-//                 name
-//                 bio
-//                 id
-//                 image
-//                 url
-//             }
-//         }
-//     }
-// `;
 
 const SectionListComponent = props => {
     console.log(props);
     return (
-        //    <Query query={ScheduleQuery}>
-        //        {({ loading, error, data }) => {
-        //            if (loading) return <Text>Loading</Text>;
-        //            if (error) return <Text>Error</Text>;
-        //            const arrangedData = formatSessionData(data.allSessions);
-        //            //  console.log(data);
-        //            return (
         <SectionList
             style={styles.list}
             renderItem={({ item, location, startTime }, index) => (
@@ -79,9 +44,6 @@ const SectionListComponent = props => {
             sections={props.arrangedData}
             keyExtractor={(item, index) => item + index}
         />
-        //            );
-        //        }}
-        //    </Query>
     );
 };
 

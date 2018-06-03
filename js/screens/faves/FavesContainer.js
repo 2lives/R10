@@ -26,27 +26,36 @@ const ScheduleQuery = gql`
         }
     }
 `;
-const FavesArr = Array.from(this.props.favesData);
 export class FavesContainer extends Component {
     findFaves = (faves, sessions) => {
         const favourites = sessions.filter(session =>
             faves.find(fave => fave.id === session.id)
         );
-        return faves;
+        return favourites;
     };
 
     render() {
+        const FavesArr = Array.from(this.props.favesData);
+
         return (
             <Query query={ScheduleQuery}>
                 {({ loading, error, data }) => {
                     if (loading) return <Text>Loading</Text>;
                     if (error) return <Text>Error</Text>;
 
+                    const faves = this.findFaves(
+                        this.props.favesData,
+                        data.allSessions
+                    );
+
+                    const formattedData = formatSessionData(faves);
+                    console.log(formattedData);
+
                     return (
                         <ScrollView>
                             <SectionListComponent
                                 nav={this.props.navigation}
-                                arrangedData={arrangedData}
+                                arrangedData={formattedData}
                             />
                         </ScrollView>
                     );

@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, Image } from 'react-native';
 
 export class Speaker extends Component {
     render() {
+        console.log(this.props.navigation.state);
         return (
             <View>
                 <TouchableOpacity onPress={() => this.props.navigation.pop()}>
