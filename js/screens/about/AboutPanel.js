@@ -20,10 +20,6 @@ export class AboutPanel extends Component {
             minHeight: ''
         };
     }
-
-    //     componentDidMount() {
-    //         setTimeout(this.setState({ minHeight: 0 }));
-    //     }
     _setMaxHeight(event) {
         if (this.state.maxHeight === '') {
             this.setState({
@@ -34,7 +30,7 @@ export class AboutPanel extends Component {
 
     _setMinHeight(event) {
         this.setState({
-            minHeight: event.nativeEvent.layout.height
+            minHeight: event.nativeEvent.layout.height + 10
         });
     }
     toggle(index) {
@@ -55,8 +51,6 @@ export class AboutPanel extends Component {
         }).start();
     }
     render() {
-        console.log(this.props);
-
         return (
             <Animated.View
                 style={{ height: this.state.animation }}
@@ -70,7 +64,10 @@ export class AboutPanel extends Component {
                     {this.state.expanded ? '-' : '+'} {this.props.title}
                 </Text>
 
-                <Text onLayout={this._setMaxHeight.bind(this)}>
+                <Text
+                    style={styles.aboutDesc}
+                    onLayout={this._setMaxHeight.bind(this)}
+                >
                     {this.props.description}
                 </Text>
             </Animated.View>

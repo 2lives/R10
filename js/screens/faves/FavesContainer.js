@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import { formatSessionData, findFaves } from '../../lib/Helpers';
 import SectionListComponent from '../../components/SectionListComponent';
 import LoadingIndicator from '../../components/Loading';
+import styles from './styles';
 
 const ScheduleQuery = gql`
     {
@@ -67,7 +68,9 @@ export class FavesContainer extends Component {
                                 />
                             )}
                             renderSectionHeader={({ section: { title } }) => (
-                                <Text>{moment(title).format('h:mm A')}</Text>
+                                <Text style={styles.sectionHeader}>
+                                    {moment(title).format('h:mm A')}
+                                </Text>
                             )}
                             sections={formattedData}
                             keyExtractor={(item, index) => item + index}

@@ -39,8 +39,11 @@ const styles = StyleSheet.create({
         color: assetColors.purple,
         fontWeight: 'bold',
         fontSize: 18,
-
+        marginBottom: 10,
         fontFamily: assetTypography.mainFont
+    },
+    aboutDesc: {
+        marginBottom: 50
     }
 });
 export default styles;
