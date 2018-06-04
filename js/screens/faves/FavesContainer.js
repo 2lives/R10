@@ -7,6 +7,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import { formatSessionData, findFaves } from '../../lib/Helpers';
 import SectionListComponent from '../../components/SectionListComponent';
+import LoadingIndicator from '../../components/Loading';
 
 const ScheduleQuery = gql`
     {
@@ -32,7 +33,15 @@ export class FavesContainer extends Component {
         return (
             <Query query={ScheduleQuery}>
                 {({ loading, error, data }) => {
-                    if (loading) return <Text>Loading</Text>;
+                    if (loading)
+                        return (
+                            <LoadingIndicator
+                                style={{
+                                    justifyContent: 'center',
+                                    alignItems: 'center'
+                                }}
+                            />
+                        );
                     if (error) return <Text>Error</Text>;
                     const arrangedData = formatSessionData(data.allSessions);
 

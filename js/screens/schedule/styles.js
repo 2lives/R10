@@ -18,10 +18,12 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat',
         fontSize: 18
     },
+    loading: {
+        height: window.height / 2,
+        width: window.width / 2
+    },
+
     location: {
-        //    color: assetColors.mediumGrey,
-        //    fontSize: 18,
-        //    fontWeight: 'bold',
         borderBottomWidth: 1,
         borderBottomColor: assetColors.mediumGrey,
         paddingBottom: 10

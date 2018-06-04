@@ -5,7 +5,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { connect } from 'react-redux';
 import moment from 'moment';
-
+import LoadingIndicator from '../../components/Loading';
 import styles from './styles';
 import { formatSessionData, findFaves } from '../../lib/Helpers';
 import SectionListComponent from '../../components/SectionListComponent';
@@ -34,7 +34,8 @@ export class ScheduleContainer extends Component {
         return (
             <Query query={ScheduleQuery}>
                 {({ loading, error, data }) => {
-                    if (loading) return <Text>Loading</Text>;
+                    if (loading)
+                        return <LoadingIndicator style={styles.loading} />;
                     if (error) return <Text>Error</Text>;
                     const faves = findFaves(
                         this.props.favesData,
