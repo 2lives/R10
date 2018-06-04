@@ -13,13 +13,11 @@ import {
 class Session extends Component {
     render() {
         const realmObject = Array.from(this.props.favesData);
-        console.log(this.props);
-        console.log(realmObject);
         const sessionInfo = this.props.navigation.state.params;
         const speakerProps = this.props.navigation.state.params.speaker;
         return (
             <View style={styles.session}>
-                <Text style={styles.font}>{sessionInfo.location}</Text>
+                <Text style={styles.presentedBy}>{sessionInfo.location}</Text>
                 <Text style={styles.font}>{sessionInfo.title}</Text>
                 <Text style={styles.time}>
                     {moment(sessionInfo.time).format('h:mm A')}
@@ -48,23 +46,27 @@ class Session extends Component {
                 </TouchableOpacity>
 
                 {realmObject.find(obj => obj.id === sessionInfo.id) ? (
-                    <Button
-                        title="remove from fave"
+                    <TouchableOpacity
+                        style={styles.button}
                         onPress={() =>
                             this.props.dispatch(
                                 deleteFaveSession(sessionInfo.id)
                             )
                         }
-                    />
+                    >
+                        <Text style={styles.buttontxt}>Add to Faves</Text>
+                    </TouchableOpacity>
                 ) : (
-                    <Button
-                        title="add fave"
+                    <TouchableOpacity
+                        style={styles.button}
                         onPress={() =>
                             this.props.dispatch(
-                                createFaveSession(sessionInfo.id)
+                                deleteFaveSession(sessionInfo.id)
                             )
                         }
-                    />
+                    >
+                        <Text style={styles.buttontxt}>Remove from Faves</Text>
+                    </TouchableOpacity>
                 )}
             </View>
         );

@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: assetColors.mediumGrey,
         paddingBottom: 10
+    },
+    heart: {
+        alignSelf: 'flex-end',
+        marginRight: 20
     }
 });
 export default styles;

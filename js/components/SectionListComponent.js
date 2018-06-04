@@ -4,8 +4,11 @@ import styles from './styles';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import { assetColors } from '../config/styles';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const SectionListComponent = props => {
+    console.log(props);
     return (
         <View key={props.index}>
             <TouchableHighlight
@@ -23,9 +26,15 @@ const SectionListComponent = props => {
                 <View>
                     <Text style={styles.item}>{props.item.title}</Text>
                     <View style={styles.location}>
-                        <Text style={styles.location}>
-                            {props.item.location}
-                        </Text>
+                        <Text>{props.item.location}</Text>
+                        {props.fav && (
+                            <Icon
+                                name={'md-heart'}
+                                size={25}
+                                color={assetColors.red}
+                                style={styles.heart}
+                            />
+                        )}
                     </View>
                 </View>
             </TouchableHighlight>
