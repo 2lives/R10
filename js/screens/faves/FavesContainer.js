@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, SectionList } from 'react-native';
 // import Faves from './Faves';
 import { connect } from 'react-redux';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import { formatSessionData } from '../../lib/Helpers';
+import moment from 'moment';
+import PropTypes from 'prop-types';
+import { formatSessionData, findFaves } from '../../lib/Helpers';
 import SectionListComponent from '../../components/SectionListComponent';
 // import realm from '../../config/models';
 
@@ -27,23 +29,16 @@ const ScheduleQuery = gql`
     }
 `;
 export class FavesContainer extends Component {
-    findFaves = (faves, sessions) => {
-        const favourites = sessions.filter(session =>
-            faves.find(fave => fave.id === session.id)
-        );
-        return favourites;
-    };
-
     render() {
         const FavesArr = Array.from(this.props.favesData);
-
         return (
             <Query query={ScheduleQuery}>
                 {({ loading, error, data }) => {
                     if (loading) return <Text>Loading</Text>;
                     if (error) return <Text>Error</Text>;
+                    const arrangedData = formatSessionData(data.allSessions);
 
-                    const faves = this.findFaves(
+                    const faves = findFaves(
                         this.props.favesData,
                         data.allSessions
                     );
@@ -52,12 +47,25 @@ export class FavesContainer extends Component {
                     console.log(formattedData);
 
                     return (
-                        <ScrollView>
-                            <SectionListComponent
-                                nav={this.props.navigation}
-                                arrangedData={formattedData}
-                            />
-                        </ScrollView>
+                        <SectionList
+                            renderItem={({ item, index, section }) => (
+                                <SectionListComponent
+                                    nav={this.props.navigation}
+                                    item={item}
+                                    index={index}
+                                    section={section}
+                                    fav={faves.find(
+                                        fave => fave.id === item.id
+                                    )}
+                                />
+                            )}
+                            renderSectionHeader={({ section: { title } }) => (
+                                <Text>{moment(title).format('h:mm A')}</Text>
+                            )}
+                            // ItemSeparatorComponent={() => <View style={styles.seperator} />}
+                            sections={arrangedData}
+                            keyExtractor={(item, index) => item + index}
+                        />
                     );
                 }}
             </Query>
