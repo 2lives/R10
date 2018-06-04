@@ -26,10 +26,11 @@ export class AboutPanel extends Component {
         if (this.state.expanded) {
             icon = this.icons['minus'];
         }
-
         return (
             <View>
-                <Text> textInComponent </Text>
+                <Text>+ {this.props.title}</Text>
+
+                <Text>{this.props.description}</Text>
             </View>
         );
     }
