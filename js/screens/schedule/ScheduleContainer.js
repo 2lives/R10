@@ -31,7 +31,6 @@ const ScheduleQuery = gql`
 
 export class ScheduleContainer extends Component {
     render() {
-        console.log(this.props);
         return (
             <Query query={ScheduleQuery}>
                 {({ loading, error, data }) => {

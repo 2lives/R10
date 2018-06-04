@@ -6,7 +6,7 @@ import {
 } from 'react-navigation';
 import { assetColors } from '../config/styles';
 import About from '../screens/about';
-import Schedule from '../screens/schedule';
+import ScheduleContainer from '../screens/schedule';
 import Map from '../screens/map';
 import Session from '../screens/session';
 import Speaker from '../screens/speaker';
@@ -38,7 +38,7 @@ const mapStack = createStackNavigator(
 
 const scheduleStack = createStackNavigator(
     {
-        Schedule: Schedule,
+        ScheduleContainer: ScheduleContainer,
         Session: Session
     },
     {
@@ -81,10 +81,10 @@ export const SpeakerScreen = createStackNavigator(
 
 export default createBottomTabNavigator(
     {
-        About: aboutStack,
         Schedule: scheduleStack,
         Map: mapStack,
-        Faves: favesStack
+        Faves: favesStack,
+        About: aboutStack
     },
     {
         navigationOptions: ({ navigation }) => ({

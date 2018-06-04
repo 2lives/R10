@@ -6,7 +6,6 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 const SectionListComponent = props => {
-    console.log(props);
     return (
         <View key={props.index}>
             <TouchableHighlight

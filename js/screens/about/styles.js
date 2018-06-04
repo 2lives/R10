@@ -1,6 +1,5 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 import { assetColors, assetTypography } from '../../config/styles';
-const window = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     logoDiv: {
@@ -26,13 +25,21 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 30,
         marginTop: 20,
-        textAlign: 'left'
+        textAlign: 'left',
+        ...Platform.select({
+            android: {
+                fontFamily: assetTypography.mainFont
+            },
+            ios: {
+                fontFamily: assetTypography.mainFont
+            }
+        })
     },
     aboutTitles: {
         color: assetColors.purple,
         fontWeight: 'bold',
         fontSize: 18,
-        marginBottom: 20,
+
         fontFamily: assetTypography.mainFont
     }
 });

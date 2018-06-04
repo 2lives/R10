@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import React, { Component } from 'react';
 import { Text, ScrollView, View, Button } from 'react-native';
 import styles from './styles';
-import AboutPanel from '../../components/AboutPanel';
+import AboutPanel from './AboutPanel';
 
 const AboutQuery = gql`
     {

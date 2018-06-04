@@ -1,3 +1,4 @@
+//why does deleting thie file bust my app?
 // import React, { Component } from 'react';
 // import {
 //     Text,

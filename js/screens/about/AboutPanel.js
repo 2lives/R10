@@ -7,27 +7,23 @@ import {
     Animated
 } from 'react-native';
 import PropTypes from 'prop-types';
+import styles from './styles';
 
 export class AboutPanel extends Component {
     constructor(props) {
         super(props);
-
-        this.icons = {
-            plus: '+',
-            minus: '-'
-        };
         this.state = {
             title: props.title,
-            expanded: true,
+            expanded: false,
             animation: new Animated.Value(),
             maxHeight: '',
             minHeight: ''
         };
     }
 
-    componentDidMount() {
-        this._setMaxHeight.bind(this), this._setMinHeight.bind(this);
-    }
+    //     componentDidMount() {
+    //         setTimeout(this.setState({ minHeight: 0 }));
+    //     }
     _setMaxHeight(event) {
         if (this.state.maxHeight === '') {
             this.setState({
@@ -49,11 +45,10 @@ export class AboutPanel extends Component {
             finalValue = this.state.expanded
                 ? this.state.minHeight
                 : this.state.maxHeight + this.state.minHeight;
-        console.log(initialValue);
+        console.log(finalValue);
         this.setState({
             expanded: !this.state.expanded
         });
-        //    this.setState({ animation: initialValue });
         this.state.animation.setValue(initialValue);
         Animated.spring(this.state.animation, {
             toValue: finalValue
@@ -61,21 +56,20 @@ export class AboutPanel extends Component {
     }
     render() {
         console.log(this.props);
-        let icon = this.icons.plus;
-        if (this.state.expanded) {
-            icon = this.icons.minus;
-        }
+
         return (
             <Animated.View
                 style={{ height: this.state.animation }}
                 key={this.props.index}
             >
                 <Text
+                    style={styles.aboutTitles}
                     onLayout={this._setMinHeight.bind(this)}
                     onPress={this.toggle.bind(this)}
                 >
-                    + {this.props.title}
+                    {this.state.expanded ? '-' : '+'} {this.props.title}
                 </Text>
+
                 <Text onLayout={this._setMaxHeight.bind(this)}>
                     {this.props.description}
                 </Text>
