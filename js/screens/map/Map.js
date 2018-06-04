@@ -5,7 +5,7 @@ export class Map extends Component {
     render() {
         return (
             <View>
-                <Text> textInComponent </Text>
+                <Text> TODO </Text>
             </View>
         );
     }

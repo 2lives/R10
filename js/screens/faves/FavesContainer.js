@@ -63,7 +63,7 @@ export class FavesContainer extends Component {
                                 <Text>{moment(title).format('h:mm A')}</Text>
                             )}
                             // ItemSeparatorComponent={() => <View style={styles.seperator} />}
-                            sections={arrangedData}
+                            sections={formattedData}
                             keyExtractor={(item, index) => item + index}
                         />
                     );

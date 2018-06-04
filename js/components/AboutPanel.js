@@ -6,14 +6,15 @@ import {
     TouchableHighlight,
     Animated
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 export class AboutPanel extends Component {
     constructor(props) {
         super(props);
 
         this.icons = {
-            plus: '',
-            minus: ''
+            plus: '+',
+            minus: '-'
         };
         this.state = {
             title: props.title,
@@ -22,9 +23,10 @@ export class AboutPanel extends Component {
     }
     toggle() {}
     render() {
-        let icon = this.icons['plus'];
+        console.log(this.props);
+        let icon = this.icons.plus;
         if (this.state.expanded) {
-            icon = this.icons['minus'];
+            icon = this.icons.minus;
         }
         return (
             <View>
@@ -35,5 +37,10 @@ export class AboutPanel extends Component {
         );
     }
 }
+
+AboutPanel.propTypes = {
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired
+};
 
 export default AboutPanel;

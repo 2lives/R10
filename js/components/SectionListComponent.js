@@ -34,6 +34,10 @@ const SectionListComponent = props => {
     );
 };
 
+SectionListComponent.propTypes = {
+    item: PropTypes.object.isRequired
+};
+
 export default connect(state => ({
     favesData: state.faves.faves
 }))(SectionListComponent);
