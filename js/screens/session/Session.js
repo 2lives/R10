@@ -15,6 +15,10 @@ class Session extends Component {
         const realmObject = Array.from(this.props.favesData);
         const sessionInfo = this.props.navigation.state.params;
         const speakerProps = this.props.navigation.state.params.speaker;
+        const favourited = Array.from(this.props.favesData).find(
+            fave => fave.id === sessionInfo.id
+        );
+        console.log(favourited);
         return (
             <View style={styles.session}>
                 <Text style={styles.presentedBy}>{sessionInfo.location}</Text>
@@ -45,27 +49,27 @@ class Session extends Component {
                     </View>
                 </TouchableOpacity>
 
-                {realmObject.find(obj => obj.id === sessionInfo.id) ? (
+                {favourited ? (
                     <TouchableOpacity
-                        style={styles.button}
                         onPress={() =>
                             this.props.dispatch(
                                 deleteFaveSession(sessionInfo.id)
                             )
                         }
+                        style={styles.button}
                     >
-                        <Text style={styles.buttontxt}>Add to Faves</Text>
+                        <Text style={styles.buttontxt}>Remove from Faves</Text>
                     </TouchableOpacity>
                 ) : (
                     <TouchableOpacity
-                        style={styles.button}
                         onPress={() =>
                             this.props.dispatch(
-                                deleteFaveSession(sessionInfo.id)
+                                createFaveSession(sessionInfo.id)
                             )
                         }
+                        style={styles.button}
                     >
-                        <Text style={styles.buttontxt}>Remove from Faves</Text>
+                        <Text style={styles.buttontxt}>Add to Faves</Text>
                     </TouchableOpacity>
                 )}
             </View>
@@ -75,4 +79,3 @@ class Session extends Component {
 export default connect(state => ({
     favesData: state.faves.faves
 }))(withNavigation(Session));
-// export default connect()(withNavigation(Session));

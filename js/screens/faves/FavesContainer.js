@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, SectionList } from 'react-native';
-// import Faves from './Faves';
 import { connect } from 'react-redux';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
@@ -8,7 +7,6 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import { formatSessionData, findFaves } from '../../lib/Helpers';
 import SectionListComponent from '../../components/SectionListComponent';
-// import realm from '../../config/models';
 
 const ScheduleQuery = gql`
     {
@@ -62,7 +60,6 @@ export class FavesContainer extends Component {
                             renderSectionHeader={({ section: { title } }) => (
                                 <Text>{moment(title).format('h:mm A')}</Text>
                             )}
-                            // ItemSeparatorComponent={() => <View style={styles.seperator} />}
                             sections={formattedData}
                             keyExtractor={(item, index) => item + index}
                         />

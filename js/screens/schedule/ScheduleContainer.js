@@ -61,7 +61,6 @@ export class ScheduleContainer extends Component {
                                     {moment(title).format('h:mm A')}
                                 </Text>
                             )}
-                            // ItemSeparatorComponent={() => <View style={styles.seperator} />}
                             sections={arrangedData}
                             keyExtractor={(item, index) => item + index}
                         />
