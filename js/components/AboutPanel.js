@@ -18,7 +18,7 @@ export class AboutPanel extends Component {
         };
         this.state = {
             title: props.title,
-            expanded: true
+            expanded: false
         };
     }
     toggle() {}

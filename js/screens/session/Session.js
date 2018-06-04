@@ -13,9 +13,10 @@ import {
 class Session extends Component {
     render() {
         const realmObject = Array.from(this.props.favesData);
-
+        console.log(this.props);
         console.log(realmObject);
         const sessionInfo = this.props.navigation.state.params;
+        const speakerProps = this.props.navigation.state.params.speaker;
         return (
             <View style={styles.session}>
                 <Text style={styles.font}>{sessionInfo.location}</Text>
@@ -26,7 +27,14 @@ class Session extends Component {
                 <Text style={styles.descript}>{sessionInfo.description}</Text>
                 <Text style={styles.presentedBy}>Presented By:</Text>
                 <TouchableOpacity
-                    onPress={() => this.props.navigation.push('Speaker')}
+                    onPress={() =>
+                        this.props.navigation.push('Speaker', {
+                            name: speakerProps.name,
+                            image: speakerProps.image,
+                            url: speakerProps.url,
+                            bio: speakerProps.bio
+                        })
+                    }
                 >
                     <View style={styles.speaker}>
                         <Image
