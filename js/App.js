@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ApolloProvider } from 'react-apollo';
 import ApolloClient from 'apollo-boost';
-
+import SplashScreen from 'react-native-splash-screen';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import RootStackNavigator from './navigation/RootStackNavigator';
 import { Provider } from 'react-redux';
@@ -12,6 +12,9 @@ const client = new ApolloClient({
 });
 
 export default class App extends Component {
+    componentDidMount() {
+        SplashScreen.hide();
+    }
     render() {
         return (
             <ApolloProvider client={client}>
