@@ -3,8 +3,10 @@ import { Text, SectionList } from 'react-native';
 import styles from '../../components/styles';
 import moment from 'moment';
 import SectionListComponent from '../../components/SectionListComponent';
+import PropTypes from 'prop-types';
 
 const Schedule = props => {
+    console.log(props);
     return (
         <SectionList
             renderItem={({ item, index, section }) => (
@@ -25,5 +27,10 @@ const Schedule = props => {
             keyExtractor={(item, index) => item + index}
         />
     );
+};
+
+Schedule.propTypes = {
+    arrangedData: PropTypes.array.isRequired,
+    faves: PropTypes.array.isRequired
 };
 export default Schedule;

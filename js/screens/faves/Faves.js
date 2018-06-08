@@ -6,6 +6,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 const Faves = props => {
+    console.log(props);
     return (
         <SectionList
             renderItem={({ item, index, section }) => (
@@ -26,6 +27,11 @@ const Faves = props => {
             keyExtractor={(item, index) => item + index}
         />
     );
+};
+
+Faves.propTypes = {
+    faves: PropTypes.array.isRequired,
+    formattedData: PropTypes.array.isRequired
 };
 
 export default Faves;
