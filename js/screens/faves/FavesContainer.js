@@ -9,6 +9,7 @@ import { formatSessionData, findFaves } from '../../lib/Helpers';
 import SectionListComponent from '../../components/SectionListComponent';
 import LoadingIndicator from '../../components/Loading';
 import styles from './styles';
+import Faves from './Faves';
 
 const ScheduleQuery = gql`
     {
@@ -52,28 +53,12 @@ export class FavesContainer extends Component {
                     );
 
                     const formattedData = formatSessionData(faves);
-                    console.log(formattedData);
 
                     return (
-                        <SectionList
-                            renderItem={({ item, index, section }) => (
-                                <SectionListComponent
-                                    nav={this.props.navigation}
-                                    item={item}
-                                    index={index}
-                                    section={section}
-                                    fav={faves.find(
-                                        fave => fave.id === item.id
-                                    )}
-                                />
-                            )}
-                            renderSectionHeader={({ section: { title } }) => (
-                                <Text style={styles.sectionHeader}>
-                                    {moment(title).format('h:mm A')}
-                                </Text>
-                            )}
-                            sections={formattedData}
-                            keyExtractor={(item, index) => item + index}
+                        <Faves
+                            formattedData={formattedData}
+                            nav={this.props.navigation}
+                            faves={faves}
                         />
                     );
                 }}

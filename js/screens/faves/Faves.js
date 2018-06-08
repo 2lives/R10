@@ -1,19 +1,31 @@
-// import React, { Component } from 'react';
-// import { Text, View } from 'react-native';
-// import SectionListComponent from '../../components/SectionListComponent';
+import React from 'react';
+import { SectionList, Text } from 'react-native';
+import SectionListComponent from '../../components/SectionListComponent';
+import styles from './styles';
+import moment from 'moment';
+import PropTypes from 'prop-types';
 
-// export class Faves extends Component {
-//     render() {
-//         console.log(this.props);
-//         return (
-//             <View>
-//                 <SectionListComponent
-//                     nav={this.props.nav}
-//                     arrangedData={this.props.arrangedData}
-//                 />
-//             </View>
-//         );
-//     }
-// }
+const Faves = props => {
+    return (
+        <SectionList
+            renderItem={({ item, index, section }) => (
+                <SectionListComponent
+                    nav={props.nav}
+                    item={item}
+                    index={index}
+                    section={section}
+                    fav={props.faves.find(fave => fave.id === item.id)}
+                />
+            )}
+            renderSectionHeader={({ section: { title } }) => (
+                <Text style={styles.sectionHeader}>
+                    {moment(title).format('h:mm A')}
+                </Text>
+            )}
+            sections={props.formattedData}
+            keyExtractor={(item, index) => item + index}
+        />
+    );
+};
 
-// export default Faves;
+export default Faves;

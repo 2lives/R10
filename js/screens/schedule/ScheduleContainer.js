@@ -1,14 +1,11 @@
 import Schedule from './Schedule';
 import React, { Component } from 'react';
-import { Text, View, ScrollView, SectionList } from 'react-native';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { connect } from 'react-redux';
-import moment from 'moment';
 import LoadingIndicator from '../../components/Loading';
 import styles from './styles';
 import { formatSessionData, findFaves } from '../../lib/Helpers';
-import SectionListComponent from '../../components/SectionListComponent';
 
 const ScheduleQuery = gql`
     {
@@ -42,28 +39,11 @@ export class ScheduleContainer extends Component {
                         data.allSessions
                     );
                     const arrangedData = formatSessionData(data.allSessions);
-                    console.log(arrangedData);
-                    console.log(faves);
                     return (
-                        <SectionList
-                            renderItem={({ item, index, section }) => (
-                                <SectionListComponent
-                                    nav={this.props.navigation}
-                                    item={item}
-                                    index={index}
-                                    section={section}
-                                    fav={faves.find(
-                                        fave => fave.id === item.id
-                                    )}
-                                />
-                            )}
-                            renderSectionHeader={({ section: { title } }) => (
-                                <Text style={styles.sectionHeader}>
-                                    {moment(title).format('h:mm A')}
-                                </Text>
-                            )}
-                            sections={arrangedData}
-                            keyExtractor={(item, index) => item + index}
+                        <Schedule
+                            arrangedData={arrangedData}
+                            faves={faves}
+                            nav={this.props.navigation}
                         />
                     );
                 }}
